@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Đăng tin tìm thợ Dĩ An</title>
+<title>Tìm thợ Sửa nhà Dĩ An</title>
 <meta name="description" content="Đăng nhu cầu sửa nhà miễn phí: điện, nước, máy lạnh, sơn, ốp lát, chống thấm, mái tôn… Thợ quanh Dĩ An xem trên bản đồ và gọi cho bạn. Có máy tính giá theo đơn giá TP.HCM.">
 <meta name="theme-color" content="#F2F4F7">
 <meta property="og:title" content="Tìm thợ Sửa nhà Dĩ An">
@@ -204,7 +204,16 @@ select.input{padding-right:32px;appearance:none;background-image:url("data:image
 .leaflet-control-attribution{font-size:10px;background:rgba(255,255,255,.8)!important;color:#465363}
 .leaflet-control-attribution a{color:#2342B8}
 .leaflet-bar a,.leaflet-bar a:hover{color:#15202B}
-.tiles-pastel{filter:saturate(.78) contrast(1.02) brightness(1.02)}
+/* lọc màu đặt trên từng ô (Leaflet cho .leaflet-tile kế thừa filter, đặt ở lớp ngoài sẽ bị áp 2 lần) */
+.tiles-carto .leaflet-tile{filter:saturate(.8) contrast(1.02) brightness(1.02)}
+.tiles-esri .leaflet-tile{filter:saturate(.68) brightness(1.03) contrast(.96)}
+/* ẩn / hiện bảng danh sách trên máy tính */
+.side-tools .side-hide{width:40px;height:40px;padding:0;flex:none;background:var(--surface)}
+.side-tools .sort-d{min-width:0;flex:0 1 auto}
+.side-show{position:absolute;left:16px;top:16px;z-index:450;height:44px;padding:0 14px 0 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh-2);font-weight:600;gap:8px;animation:fade .2s ease}
+.side-show b{font-family:var(--font-d);font-size:15px;font-stretch:85%;background:var(--cobalt-soft);color:var(--cobalt-ink);border-radius:6px;padding:1px 7px;margin-left:2px}
+.side-show:hover{border-color:var(--cobalt);color:var(--cobalt-ink)}
+@media (min-width:761px){.app.side-off .side{display:none}}
 
 /* ---------- bộ lọc ---------- */
 .fpanel{margin:6px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 16px 16px;box-shadow:var(--sh-2);display:flex;flex-direction:column;gap:14px;max-height:62vh;overflow:auto}
@@ -678,8 +687,13 @@ button.stat:hover{border-color:var(--cobalt-line)}
    ===================================================================== */
 window.APP_CONFIG = {
   supabaseUrl: 'https://sttwkynnxfznsmabrlkd.supabase.co',
-  supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0dHdreW5ueGZ6bnNtYWJybGtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwOTU5MzYsImV4cCI6MjEwNzY3MTkzNn0.84q3DFAX7mjYIBZjCxkVH5fVDfb0OeQnZ1DTK8Ta5fg',
-  photoBucket: 'sua-nha-photos'
+  supabaseAnonKey: '
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0dHdreW5ueGZ6bnNtYWJybGtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwOTU5MzYsImV4cCI6MjEwNzY3MTkzNn0.84q3DFAX7mjYIBZjCxkVH5fVDfb0OeQnZ1DTK8Ta5fg',
+  photoBucket: 'sua-nha-photos',
+  /* Không bắt buộc. Nền bản đồ mặc định là Esri Street Map (miễn phí, không cần key).
+     Muốn dùng nền CARTO Voyager thì xin key ở carto.com/basemaps/apikey rồi dán vào đây
+     (key sai hoặc hết hạn thì app tự quay về nền Esri). */
+  cartoKey: ''
 };
 </script>
 <script id="vendor-js">(()=>{var d1=Object.create;var ic=Object.defineProperty;var f1=Object.getOwnPropertyDescriptor;var p1=Object.getOwnPropertyNames;var m1=Object.getPrototypeOf,g1=Object.prototype.hasOwnProperty;var Wn=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),_1=(t,e)=>{for(var n in e)ic(t,n,{get:e[n],enumerable:!0})},v1=(t,e,n,r)=>{if(e&&typeof e=="object"||typeof e=="function")for(let s of p1(e))!g1.call(t,s)&&s!==n&&ic(t,s,{get:()=>e[s],enumerable:!(r=f1(e,s))||r.enumerable});return t};var Q=(t,e,n)=>(n=t!=null?d1(m1(t)):{},v1(e||!t||!t.__esModule?ic(n,"default",{value:t,enumerable:!0}):n,t));var Np=Wn(oe=>{"use strict";var ws=Symbol.for("react.element"),y1=Symbol.for("react.portal"),w1=Symbol.for("react.fragment"),S1=Symbol.for("react.strict_mode"),k1=Symbol.for("react.profiler"),x1=Symbol.for("react.provider"),E1=Symbol.for("react.context"),b1=Symbol.for("react.forward_ref"),T1=Symbol.for("react.suspense"),P1=Symbol.for("react.memo"),C1=Symbol.for("react.lazy"),xp=Symbol.iterator;function L1(t){return t===null||typeof t!="object"?null:(t=xp&&t[xp]||t["@@iterator"],typeof t=="function"?t:null)}var Tp={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},Pp=Object.assign,Cp={};function ai(t,e,n){this.props=t,this.context=e,this.refs=Cp,this.updater=n||Tp}ai.prototype.isReactComponent={};ai.prototype.setState=function(t,e){if(typeof t!="object"&&typeof t!="function"&&t!=null)throw Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");this.updater.enqueueSetState(this,t,e,"setState")};ai.prototype.forceUpdate=function(t){this.updater.enqueueForceUpdate(this,t,"forceUpdate")};function Lp(){}Lp.prototype=ai.prototype;function oc(t,e,n){this.props=t,this.context=e,this.refs=Cp,this.updater=n||Tp}var ac=oc.prototype=new Lp;ac.constructor=oc;Pp(ac,ai.prototype);ac.isPureReactComponent=!0;var Ep=Array.isArray,Op=Object.prototype.hasOwnProperty,lc={current:null},Ap={key:!0,ref:!0,__self:!0,__source:!0};function Rp(t,e,n){var r,s={},a=null,l=null;if(e!=null)for(r in e.ref!==void 0&&(l=e.ref),e.key!==void 0&&(a=""+e.key),e)Op.call(e,r)&&!Ap.hasOwnProperty(r)&&(s[r]=e[r]);var c=arguments.length-2;if(c===1)s.children=n;else if(1<c){for(var h=Array(c),f=0;f<c;f++)h[f]=arguments[f+2];s.children=h}if(t&&t.defaultProps)for(r in c=t.defaultProps,c)s[r]===void 0&&(s[r]=c[r]);return{$$typeof:ws,type:t,key:a,ref:l,props:s,_owner:lc.current}}function O1(t,e){return{$$typeof:ws,type:t.type,key:e,ref:t.ref,props:t.props,_owner:t._owner}}function uc(t){return typeof t=="object"&&t!==null&&t.$$typeof===ws}function A1(t){var e={"=":"=0",":":"=2"};return"$"+t.replace(/[=:]/g,function(n){return e[n]})}var bp=/\/+/g;function sc(t,e){return typeof t=="object"&&t!==null&&t.key!=null?A1(""+t.key):e.toString(36)}function ga(t,e,n,r,s){var a=typeof t;(a==="undefined"||a==="boolean")&&(t=null);var l=!1;if(t===null)l=!0;else switch(a){case"string":case"number":l=!0;break;case"object":switch(t.$$typeof){case ws:case y1:l=!0}}if(l)return l=t,s=s(l),t=r===""?"."+sc(l,0):r,Ep(s)?(n="",t!=null&&(n=t.replace(bp,"$&/")+"/"),ga(s,e,n,"",function(f){return f})):s!=null&&(uc(s)&&(s=O1(s,n+(!s.key||l&&l.key===s.key?"":(""+s.key).replace(bp,"$&/")+"/")+t)),e.push(s)),1;if(l=0,r=r===""?".":r+":",Ep(t))for(var c=0;c<t.length;c++){a=t[c];var h=r+sc(a,c);l+=ga(a,e,n,h,s)}else if(h=L1(t),typeof h=="function")for(t=h.call(t),c=0;!(a=t.next()).done;)a=a.value,h=r+sc(a,c++),l+=ga(a,e,n,h,s);else if(a==="object")throw e=String(t),Error("Objects are not valid as a React child (found: "+(e==="[object Object]"?"object with keys {"+Object.keys(t).join(", ")+"}":e)+"). If you meant to render a collection of children, use an array instead.");return l}function ma(t,e,n){if(t==null)return t;var r=[],s=0;return ga(t,r,"","",function(a){return e.call(n,a,s++)}),r}function R1(t){if(t._status===-1){var e=t._result;e=e(),e.then(function(n){(t._status===0||t._status===-1)&&(t._status=1,t._result=n)},function(n){(t._status===0||t._status===-1)&&(t._status=2,t._result=n)}),t._status===-1&&(t._status=0,t._result=e)}if(t._status===1)return t._result.default;throw t._result}var it={current:null},_a={transition:null},I1={ReactCurrentDispatcher:it,ReactCurrentBatchConfig:_a,ReactCurrentOwner:lc};function Ip(){throw Error("act(...) is not supported in production builds of React.")}oe.Children={map:ma,forEach:function(t,e,n){ma(t,function(){e.apply(this,arguments)},n)},count:function(t){var e=0;return ma(t,function(){e++}),e},toArray:function(t){return ma(t,function(e){return e})||[]},only:function(t){if(!uc(t))throw Error("React.Children.only expected to receive a single React element child.");return t}};oe.Component=ai;oe.Fragment=w1;oe.Profiler=k1;oe.PureComponent=oc;oe.StrictMode=S1;oe.Suspense=T1;oe.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED=I1;oe.act=Ip;oe.cloneElement=function(t,e,n){if(t==null)throw Error("React.cloneElement(...): The argument must be a React element, but you passed "+t+".");var r=Pp({},t.props),s=t.key,a=t.ref,l=t._owner;if(e!=null){if(e.ref!==void 0&&(a=e.ref,l=lc.current),e.key!==void 0&&(s=""+e.key),t.type&&t.type.defaultProps)var c=t.type.defaultProps;for(h in e)Op.call(e,h)&&!Ap.hasOwnProperty(h)&&(r[h]=e[h]===void 0&&c!==void 0?c[h]:e[h])}var h=arguments.length-2;if(h===1)r.children=n;else if(1<h){c=Array(h);for(var f=0;f<h;f++)c[f]=arguments[f+2];r.children=c}return{$$typeof:ws,type:t.type,key:s,ref:a,props:r,_owner:l}};oe.createContext=function(t){return t={$$typeof:E1,_currentValue:t,_currentValue2:t,_threadCount:0,Provider:null,Consumer:null,_defaultValue:null,_globalName:null},t.Provider={$$typeof:x1,_context:t},t.Consumer=t};oe.createElement=Rp;oe.createFactory=function(t){var e=Rp.bind(null,t);return e.type=t,e};oe.createRef=function(){return{current:null}};oe.forwardRef=function(t){return{$$typeof:b1,render:t}};oe.isValidElement=uc;oe.lazy=function(t){return{$$typeof:C1,_payload:{_status:-1,_result:t},_init:R1}};oe.memo=function(t,e){return{$$typeof:P1,type:t,compare:e===void 0?null:e}};oe.startTransition=function(t){var e=_a.transition;_a.transition={};try{t()}finally{_a.transition=e}};oe.unstable_act=Ip;oe.useCallback=function(t,e){return it.current.useCallback(t,e)};oe.useContext=function(t){return it.current.useContext(t)};oe.useDebugValue=function(){};oe.useDeferredValue=function(t){return it.current.useDeferredValue(t)};oe.useEffect=function(t,e){return it.current.useEffect(t,e)};oe.useId=function(){return it.current.useId()};oe.useImperativeHandle=function(t,e,n){return it.current.useImperativeHandle(t,e,n)};oe.useInsertionEffect=function(t,e){return it.current.useInsertionEffect(t,e)};oe.useLayoutEffect=function(t,e){return it.current.useLayoutEffect(t,e)};oe.useMemo=function(t,e){return it.current.useMemo(t,e)};oe.useReducer=function(t,e,n){return it.current.useReducer(t,e,n)};oe.useRef=function(t){return it.current.useRef(t)};oe.useState=function(t){return it.current.useState(t)};oe.useSyncExternalStore=function(t,e,n){return it.current.useSyncExternalStore(t,e,n)};oe.useTransition=function(){return it.current.useTransition()};oe.version="18.3.1"});var $e=Wn((hb,Mp)=>{"use strict";Mp.exports=Np()});var Vp=Wn(pe=>{"use strict";function fc(t,e){var n=t.length;t.push(e);e:for(;0<n;){var r=n-1>>>1,s=t[r];if(0<va(s,e))t[r]=e,t[n]=s,n=r;else break e}}function Wt(t){return t.length===0?null:t[0]}function wa(t){if(t.length===0)return null;var e=t[0],n=t.pop();if(n!==e){t[0]=n;e:for(var r=0,s=t.length,a=s>>>1;r<a;){var l=2*(r+1)-1,c=t[l],h=l+1,f=t[h];if(0>va(c,n))h<s&&0>va(f,c)?(t[r]=f,t[h]=n,r=h):(t[r]=c,t[l]=n,r=l);else if(h<s&&0>va(f,n))t[r]=f,t[h]=n,r=h;else break e}}return e}function va(t,e){var n=t.sortIndex-e.sortIndex;return n!==0?n:t.id-e.id}typeof performance=="object"&&typeof performance.now=="function"?(jp=performance,pe.unstable_now=function(){return jp.now()}):(cc=Date,Dp=cc.now(),pe.unstable_now=function(){return cc.now()-Dp});var jp,cc,Dp,on=[],Vn=[],N1=1,It=null,qe=3,Sa=!1,Er=!1,ks=!1,Up=typeof setTimeout=="function"?setTimeout:null,$p=typeof clearTimeout=="function"?clearTimeout:null,Bp=typeof setImmediate<"u"?setImmediate:null;typeof navigator<"u"&&navigator.scheduling!==void 0&&navigator.scheduling.isInputPending!==void 0&&navigator.scheduling.isInputPending.bind(navigator.scheduling);function pc(t){for(var e=Wt(Vn);e!==null;){if(e.callback===null)wa(Vn);else if(e.startTime<=t)wa(Vn),e.sortIndex=e.expirationTime,fc(on,e);else break;e=Wt(Vn)}}function mc(t){if(ks=!1,pc(t),!Er)if(Wt(on)!==null)Er=!0,_c(gc);else{var e=Wt(Vn);e!==null&&vc(mc,e.startTime-t)}}function gc(t,e){Er=!1,ks&&(ks=!1,$p(xs),xs=-1),Sa=!0;var n=qe;try{for(pc(e),It=Wt(on);It!==null&&(!(It.expirationTime>e)||t&&!Wp());){var r=It.callback;if(typeof r=="function"){It.callback=null,qe=It.priorityLevel;var s=r(It.expirationTime<=e);e=pe.unstable_now(),typeof s=="function"?It.callback=s:It===Wt(on)&&wa(on),pc(e)}else wa(on);It=Wt(on)}if(It!==null)var a=!0;else{var l=Wt(Vn);l!==null&&vc(mc,l.startTime-e),a=!1}return a}finally{It=null,qe=n,Sa=!1}}var ka=!1,ya=null,xs=-1,Fp=5,Hp=-1;function Wp(){return!(pe.unstable_now()-Hp<Fp)}function hc(){if(ya!==null){var t=pe.unstable_now();Hp=t;var e=!0;try{e=ya(!0,t)}finally{e?Ss():(ka=!1,ya=null)}}else ka=!1}var Ss;typeof Bp=="function"?Ss=function(){Bp(hc)}:typeof MessageChannel<"u"?(dc=new MessageChannel,zp=dc.port2,dc.port1.onmessage=hc,Ss=function(){zp.postMessage(null)}):Ss=function(){Up(hc,0)};var dc,zp;function _c(t){ya=t,ka||(ka=!0,Ss())}function vc(t,e){xs=Up(function(){t(pe.unstable_now())},e)}pe.unstable_IdlePriority=5;pe.unstable_ImmediatePriority=1;pe.unstable_LowPriority=4;pe.unstable_NormalPriority=3;pe.unstable_Profiling=null;pe.unstable_UserBlockingPriority=2;pe.unstable_cancelCallback=function(t){t.callback=null};pe.unstable_continueExecution=function(){Er||Sa||(Er=!0,_c(gc))};pe.unstable_forceFrameRate=function(t){0>t||125<t?console.error("forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"):Fp=0<t?Math.floor(1e3/t):5};pe.unstable_getCurrentPriorityLevel=function(){return qe};pe.unstable_getFirstCallbackNode=function(){return Wt(on)};pe.unstable_next=function(t){switch(qe){case 1:case 2:case 3:var e=3;break;default:e=qe}var n=qe;qe=e;try{return t()}finally{qe=n}};pe.unstable_pauseExecution=function(){};pe.unstable_requestPaint=function(){};pe.unstable_runWithPriority=function(t,e){switch(t){case 1:case 2:case 3:case 4:case 5:break;default:t=3}var n=qe;qe=t;try{return e()}finally{qe=n}};pe.unstable_scheduleCallback=function(t,e,n){var r=pe.unstable_now();switch(typeof n=="object"&&n!==null?(n=n.delay,n=typeof n=="number"&&0<n?r+n:r):n=r,t){case 1:var s=-1;break;case 2:s=250;break;case 5:s=1073741823;break;case 4:s=1e4;break;default:s=5e3}return s=n+s,t={id:N1++,callback:e,priorityLevel:t,startTime:n,expirationTime:s,sortIndex:-1},n>r?(t.sortIndex=n,fc(Vn,t),Wt(on)===null&&t===Wt(Vn)&&(ks?($p(xs),xs=-1):ks=!0,vc(mc,n-r))):(t.sortIndex=s,fc(on,t),Er||Sa||(Er=!0,_c(gc))),t};pe.unstable_shouldYield=Wp;pe.unstable_wrapCallback=function(t){var e=qe;return function(){var n=qe;qe=e;try{return t.apply(this,arguments)}finally{qe=n}}}});var Kp=Wn((fb,Zp)=>{"use strict";Zp.exports=Vp()});var Y_=Wn(bt=>{"use strict";var M1=$e(),xt=Kp();function D(t){for(var e="https://reactjs.org/docs/error-decoder.html?invariant="+t,n=1;n<arguments.length;n++)e+="&args[]="+encodeURIComponent(arguments[n]);return"Minified React error #"+t+"; visit "+e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}var eg=new Set,Vs={};function Dr(t,e){Ci(t,e),Ci(t+"Capture",e)}function Ci(t,e){for(Vs[t]=e,t=0;t<e.length;t++)eg.add(e[t])}var On=!(typeof window>"u"||typeof window.document>"u"||typeof window.document.createElement>"u"),$c=Object.prototype.hasOwnProperty,j1=/^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/,Gp={},qp={};function D1(t){return $c.call(qp,t)?!0:$c.call(Gp,t)?!1:j1.test(t)?qp[t]=!0:(Gp[t]=!0,!1)}function B1(t,e,n,r){if(n!==null&&n.type===0)return!1;switch(typeof e){case"function":case"symbol":return!0;case"boolean":return r?!1:n!==null?!n.acceptsBooleans:(t=t.toLowerCase().slice(0,5),t!=="data-"&&t!=="aria-");default:return!1}}function z1(t,e,n,r){if(e===null||typeof e>"u"||B1(t,e,n,r))return!0;if(r)return!1;if(n!==null)switch(n.type){case 3:return!e;case 4:return e===!1;case 5:return isNaN(e);case 6:return isNaN(e)||1>e}return!1}function at(t,e,n,r,s,a,l){this.acceptsBooleans=e===2||e===3||e===4,this.attributeName=r,this.attributeNamespace=s,this.mustUseProperty=n,this.propertyName=t,this.type=e,this.sanitizeURL=a,this.removeEmptyString=l}var Ke={};"children dangerouslySetInnerHTML defaultValue defaultChecked innerHTML suppressContentEditableWarning suppressHydrationWarning style".split(" ").forEach(function(t){Ke[t]=new at(t,0,!1,t,null,!1,!1)});[["acceptCharset","accept-charset"],["className","class"],["htmlFor","for"],["httpEquiv","http-equiv"]].forEach(function(t){var e=t[0];Ke[e]=new at(e,1,!1,t[1],null,!1,!1)});["contentEditable","draggable","spellCheck","value"].forEach(function(t){Ke[t]=new at(t,2,!1,t.toLowerCase(),null,!1,!1)});["autoReverse","externalResourcesRequired","focusable","preserveAlpha"].forEach(function(t){Ke[t]=new at(t,2,!1,t,null,!1,!1)});"allowFullScreen async autoFocus autoPlay controls default defer disabled disablePictureInPicture disableRemotePlayback formNoValidate hidden loop noModule noValidate open playsInline readOnly required reversed scoped seamless itemScope".split(" ").forEach(function(t){Ke[t]=new at(t,3,!1,t.toLowerCase(),null,!1,!1)});["checked","multiple","muted","selected"].forEach(function(t){Ke[t]=new at(t,3,!0,t,null,!1,!1)});["capture","download"].forEach(function(t){Ke[t]=new at(t,4,!1,t,null,!1,!1)});["cols","rows","size","span"].forEach(function(t){Ke[t]=new at(t,6,!1,t,null,!1,!1)});["rowSpan","start"].forEach(function(t){Ke[t]=new at(t,5,!1,t.toLowerCase(),null,!1,!1)});var Ih=/[\-:]([a-z])/g;function Nh(t){return t[1].toUpperCase()}"accent-height alignment-baseline arabic-form baseline-shift cap-height clip-path clip-rule color-interpolation color-interpolation-filters color-profile color-rendering dominant-baseline enable-background fill-opacity fill-rule flood-color flood-opacity font-family font-size font-size-adjust font-stretch font-style font-variant font-weight glyph-name glyph-orientation-horizontal glyph-orientation-vertical horiz-adv-x horiz-origin-x image-rendering letter-spacing lighting-color marker-end marker-mid marker-start overline-position overline-thickness paint-order panose-1 pointer-events rendering-intent shape-rendering stop-color stop-opacity strikethrough-position strikethrough-thickness stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin stroke-miterlimit stroke-opacity stroke-width text-anchor text-decoration text-rendering underline-position underline-thickness unicode-bidi unicode-range units-per-em v-alphabetic v-hanging v-ideographic v-mathematical vector-effect vert-adv-y vert-origin-x vert-origin-y word-spacing writing-mode xmlns:xlink x-height".split(" ").forEach(function(t){var e=t.replace(Ih,Nh);Ke[e]=new at(e,1,!1,t,null,!1,!1)});"xlink:actuate xlink:arcrole xlink:role xlink:show xlink:title xlink:type".split(" ").forEach(function(t){var e=t.replace(Ih,Nh);Ke[e]=new at(e,1,!1,t,"http://www.w3.org/1999/xlink",!1,!1)});["xml:base","xml:lang","xml:space"].forEach(function(t){var e=t.replace(Ih,Nh);Ke[e]=new at(e,1,!1,t,"http://www.w3.org/XML/1998/namespace",!1,!1)});["tabIndex","crossOrigin"].forEach(function(t){Ke[t]=new at(t,1,!1,t.toLowerCase(),null,!1,!1)});Ke.xlinkHref=new at("xlinkHref",1,!1,"xlink:href","http://www.w3.org/1999/xlink",!0,!1);["src","href","action","formAction"].forEach(function(t){Ke[t]=new at(t,1,!1,t.toLowerCase(),null,!0,!0)});function Mh(t,e,n,r){var s=Ke.hasOwnProperty(e)?Ke[e]:null;(s!==null?s.type!==0:r||!(2<e.length)||e[0]!=="o"&&e[0]!=="O"||e[1]!=="n"&&e[1]!=="N")&&(z1(e,n,s,r)&&(n=null),r||s===null?D1(e)&&(n===null?t.removeAttribute(e):t.setAttribute(e,""+n)):s.mustUseProperty?t[s.propertyName]=n===null?s.type===3?!1:"":n:(e=s.attributeName,r=s.attributeNamespace,n===null?t.removeAttribute(e):(s=s.type,n=s===3||s===4&&n===!0?"":""+n,r?t.setAttributeNS(r,e,n):t.setAttribute(e,n))))}var Nn=M1.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,xa=Symbol.for("react.element"),ci=Symbol.for("react.portal"),hi=Symbol.for("react.fragment"),jh=Symbol.for("react.strict_mode"),Fc=Symbol.for("react.profiler"),tg=Symbol.for("react.provider"),ng=Symbol.for("react.context"),Dh=Symbol.for("react.forward_ref"),Hc=Symbol.for("react.suspense"),Wc=Symbol.for("react.suspense_list"),Bh=Symbol.for("react.memo"),Kn=Symbol.for("react.lazy");Symbol.for("react.scope");Symbol.for("react.debug_trace_mode");var rg=Symbol.for("react.offscreen");Symbol.for("react.legacy_hidden");Symbol.for("react.cache");Symbol.for("react.tracing_marker");var Jp=Symbol.iterator;function Es(t){return t===null||typeof t!="object"?null:(t=Jp&&t[Jp]||t["@@iterator"],typeof t=="function"?t:null)}var Te=Object.assign,yc;function Rs(t){if(yc===void 0)try{throw Error()}catch(n){var e=n.stack.trim().match(/\n( *(at )?)/);yc=e&&e[1]||""}return`
@@ -835,6 +849,8 @@ const ICON = {
   filter: sv('<path d="M4 6h16M7 12h10M10 18h4"/>'),
   list: sv('<path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>'),
   map: sv('<path d="m3 6.5 6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5Z"/><path d="M9 4v13.5M15 6.5V20"/>'),
+  panelClose: sv('<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16M16 9.5 13.5 12l2.5 2.5"/>'),
+  panelOpen: sv('<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16M13.5 9.5 16 12l-2.5 2.5"/>'),
   layers: sv('<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/>', 20),
   close: sv('<path d="M6 6l12 12M18 6 6 18"/>'),
   plus: sv('<path d="M12 5v14M5 12h14"/>'),
@@ -1235,16 +1251,64 @@ function PhotoUploader({ photos, setPhotos, folder, max = 6, onBusy }) {
 /* ================= map ================= */
 const ESRI = svc => 'https://server.arcgisonline.com/ArcGIS/rest/services/' + svc + '/MapServer/tile/{z}/{y}/{x}';
 const OSM_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
+/* Nền "Bản đồ":
+   - CARTO từ 8/2026 bắt buộc API key (không key: ô in chữ "API KEY REQUIRED").
+   - tile.openstreetmap.org chặn nhiều web app (ô in chữ "Access blocked").
+   Cả hai lỗi đều trả về ẢNH nên Leaflet không báo lỗi được. Vì vậy nền mặc định là Esri World Street Map
+   (cùng máy chủ với nền vệ tinh, không cần key). Có key CARTO thì điền APP_CONFIG.cartoKey:
+   app gọi thử 1 ô trước, được thì dùng CARTO Voyager, key sai/hết hạn thì tự dùng Esri. */
+const CARTO_KEY = String((window.APP_CONFIG || {}).cartoKey || '').trim();
+const MAP_SOURCES = [
+  ...(CARTO_KEY ? [{ id: 'carto', probe: true, url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=' + encodeURIComponent(CARTO_KEY), sub: 'abcd', max: 20, attr: OSM_ATTR + ' &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>' }] : []),
+  { id: 'esri', url: ESRI('World_Street_Map'), max: 18, attr: 'Bản đồ &copy; Esri, HERE, Garmin, ' + OSM_ATTR },
+];
 const STYLES = {
-  pastel: { name: 'Bản đồ', url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', sub: 'abcd', max: 20, attr: OSM_ATTR + ' &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>', prev: 'linear-gradient(135deg,#f6f1e7,#dfeee4 55%,#f7e2d6)' },
-  sat: { name: 'Vệ tinh', url: ESRI('World_Imagery'), max: 18, labels: [ESRI('Reference/World_Transportation'), ESRI('Reference/World_Boundaries_and_Places')], attr: 'Ảnh vệ tinh &copy; Esri, Maxar, Earthstar Geographics · Nhãn &copy; Esri, ' + OSM_ATTR, prev: 'linear-gradient(135deg,#3c4a2e,#6b6a4c 50%,#2e3b2b)' },
+  pastel: { name: 'Bản đồ', sources: MAP_SOURCES, prev: 'linear-gradient(135deg,#f3f1ea,#e2ecdf 55%,#e8e3ef)' },
+  sat: { name: 'Vệ tinh', sources: [{ id: 'sat', url: ESRI('World_Imagery'), max: 18, attr: 'Ảnh vệ tinh &copy; Esri, Maxar, Earthstar Geographics · Nhãn &copy; Esri, ' + OSM_ATTR }], labels: [ESRI('Reference/World_Transportation'), ESRI('Reference/World_Boundaries_and_Places')], prev: 'linear-gradient(135deg,#3c4a2e,#6b6a4c 50%,#2e3b2b)' },
 };
 const DI_AN = [10.9045, 106.769];
+let MAP_SRC_OK = 0; // nguồn nền đã chạy được (dùng chung cho mọi bản đồ trong trang)
+const PROBE_RES = {}, PROBE_P = {};
+/* gọi thử 1 ô quanh Dĩ An: chỉ coi là được khi máy chủ trả mã 200 (ô "API KEY REQUIRED" trả 401/403) */
+function probeTile(src) {
+  if (PROBE_P[src.id]) return PROBE_P[src.id];
+  const z = 14, n = 1 << z, la = DI_AN[0] * Math.PI / 180;
+  const x = Math.floor((DI_AN[1] + 180) / 360 * n), y = Math.floor((1 - Math.log(Math.tan(la) + 1 / Math.cos(la)) / Math.PI) / 2 * n);
+  const u = src.url.replace('{s}', (src.sub || 'a')[0]).replace('{z}', z).replace('{x}', x).replace('{y}', y).replace('{r}', '');
+  return (PROBE_P[src.id] = new Promise(res => {
+    if (typeof fetch !== 'function') return res(true);
+    const t = setTimeout(() => res(false), 6000);
+    fetch(u, { credentials: 'omit', cache: 'force-cache' }).then(r => res(!!r.ok), () => res(false)).then(() => clearTimeout(t));
+  }).then(ok => (PROBE_RES[src.id] = ok)));
+}
 function BaseTiles({ k }) {
-  const s = STYLES[k] || STYLES.pastel;
+  const s = STYLES[k] || STYLES.pastel, last = s.sources.length - 1;
+  const [idx, setIdx] = useState(() => (k === 'pastel' ? Math.min(MAP_SRC_OK, last) : 0));
+  const [, setTick] = useState(0);
+  const st = useRef({ ok: 0, err: 0 });
+  const i = Math.min(idx, last), src = s.sources[i];
+  const next = () => { if (i < last) { if (k === 'pastel') MAP_SRC_OK = i + 1; setIdx(i + 1); } };
+  useEffect(() => { st.current = { ok: 0, err: 0 }; }, [k, i]);
+  useEffect(() => {
+    if (!src.probe) return;
+    if (PROBE_RES[src.id] === false) { next(); return; }
+    if (PROBE_RES[src.id] === true) return;
+    let live = true;
+    probeTile(src).then(ok => { if (!live) return; if (ok) setTick(t => t + 1); else next(); });
+    return () => { live = false; };
+  }, [k, i]);
+  const ev = useMemo(() => ({
+    tileload: () => { st.current.ok++; },
+    tileerror: () => {
+      const c = st.current; c.err++;
+      // lỗi mạng nhiều mà chưa tải được ô nào: đổi sang nguồn dự phòng
+      if (c.ok === 0 && c.err >= 6) next();
+    },
+  }), [k, i]);
+  const wait = src.probe && PROBE_RES[src.id] !== true; // đang gọi thử: chưa vẽ để khỏi lóe ô lỗi
   return html`
-    <${TileLayer} key=${k} url=${s.url} attribution=${s.attr} subdomains=${s.sub || 'abc'} maxZoom=${20} maxNativeZoom=${s.max} keepBuffer=${3} className=${'tiles-' + k} />
-    ${(s.labels || []).map((u, i) => html`<${TileLayer} key=${k + '-l' + i} url=${u} maxZoom=${20} maxNativeZoom=${s.max} pane="overlayPane" />`)}`;
+    ${wait ? null : html`<${TileLayer} key=${k + '-' + src.id} url=${src.url} attribution=${src.attr} subdomains=${src.sub || 'abc'} maxZoom=${20} maxNativeZoom=${src.max} keepBuffer=${3} className=${'tiles-' + k + ' tiles-' + src.id} eventHandlers=${ev} />`}
+    ${(s.labels || []).map((u, j) => html`<${TileLayer} key=${k + '-l' + j} url=${u} maxZoom=${20} maxNativeZoom=${s.max || src.max} pane="overlayPane" />`)}`;
 }
 function ResizeFix() {
   const map = useMap();
@@ -2342,7 +2406,7 @@ function AboutModal({ settings, onClose, onPost, onCalc, onAdmin }) {
     </div>
     <div className="note small"><b>An toàn:</b> luôn gặp mặt, xem nhà và thống nhất giá bằng văn bản trước khi làm. Không chuyển tiền cọc cho người chưa gặp. Thấy tin lạ, bấm "Báo tin sai".</div>
     ${c.name || c.phone || z ? html`<div className="ab-contact"><b>Liên hệ quản trị:</b> ${c.name || ''} ${c.phone ? html`<a href=${'tel:' + normPhone(c.phone)}>${fmtPhone(c.phone)}</a>` : null} ${z ? html`<a href=${z} target="_blank" rel="noopener">Zalo</a>` : null}</div>` : null}
-    <p className="small muted" style=${{ marginBottom: 0 }}>Bản đồ © OpenStreetMap, CARTO, Esri. <button className="link small" onClick=${onAdmin}>Đăng nhập quản lý</button></p>
+    <p className="small muted" style=${{ marginBottom: 0 }}>Bản đồ © Esri, OpenStreetMap${CARTO_KEY ? ', CARTO' : ''}. <button className="link small" onClick=${onAdmin}>Đăng nhập quản lý</button></p>
   <//>`;
 }
 function SetupModal({ onClose }) {
@@ -2378,6 +2442,9 @@ function App() {
   const [mineN, setMineN] = useState(() => lsGet(LS_KEY + ':mine', []).length);
   const mapRef = useRef(null), gripY = useRef(null);
   useEffect(() => { lsSet(LS_KEY, { ...lsGet(LS_KEY, {}), base }); }, [base]);
+  /* máy tính: ẩn bảng danh sách bên trái (mở tin thì bảng tự hiện lại để xem chi tiết) */
+  const [sideOff, setSideOff] = useState(() => !!lsGet(LS_KEY, {}).sideOff);
+  useEffect(() => { lsSet(LS_KEY, { ...lsGet(LS_KEY, {}), sideOff }); }, [sideOff]);
   setTrades(settings.trades);
 
   const loadPosts = useCallback(async () => { try { setPosts(await api.publicPosts()); setLoadErr(''); } catch (e) { setLoadErr(explainError(e)); } setLoaded(true); }, []);
@@ -2449,6 +2516,18 @@ function App() {
   const mapPosts = useMemo(() => { const a = applyFilter(posts, { ...f, inView: false }, q, null); if (sel && !a.some(p => p.id === sel.id)) a.push(sel); return a; }, [posts, f, q, sel]);
   const pins = useMemo(() => clusterize(mapPosts, Math.round(view.zoom), selId), [mapPosts, view.zoom, selId]);
   const openCount = posts.filter(p => effStatus(p) === 'dang-tim').length;
+  const sideHidden = sideOff && !sel;
+  const sideFirst = useRef(true);
+  useEffect(() => {
+    if (sideFirst.current) { sideFirst.current = false; return; }
+    const m = mapRef.current; if (!m || isMobile()) return;
+    /* bản đồ rộng / hẹp lại theo bảng: giữ các ghim đứng yên trên màn hình, không nhảy */
+    const w = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--side')) || 0;
+    m.invalidateSize({ pan: false });
+    if (sideHidden) m.panBy([-w, 0], { animate: false });
+    else if (!sel) m.panBy([w, 0], { animate: false }); // mở tin: để bản đồ tự bay tới tin
+  }, [sideHidden]);
+  const hideSide = () => { setFOpen(false); setSideOff(true); };
 
   const onView = useCallback(map => { setView({ zoom: map.getZoom(), bounds: map.getBounds(), center: map.getCenter() }); }, []);
   const onMapMove = useCallback(() => { userMoved.current = true; }, []);
@@ -2488,7 +2567,7 @@ function App() {
     : html`<${Empty} title=${posts.length ? 'Không có tin phù hợp' : 'Chưa có tin nào'}>${posts.length ? html`<button className="btn sm" onClick=${() => { setF(blankFilter()); setQ(''); }}>Bỏ lọc</button>` : html`Hãy là người đầu tiên đăng nhu cầu sửa nhà.<div><button className="btn sm primary" onClick=${() => setModal({ k: 'form' })}>Đăng tin</button></div>`}<//>`}
   </div>`;
 
-  return html`<div className=${'app' + (sel ? ' has-sel' : '') + (sheet ? ' sheet-open' : '')}>
+  return html`<div className=${'app' + (sel ? ' has-sel' : '') + (sheet ? ' sheet-open' : '') + (sideHidden ? ' side-off' : '')}>
     ${DEMO ? html`<div className="demo-bar"><span className="demo-dot"></span><span>Bản xem thử với dữ liệu mẫu<span className="hide-m">, chưa kết nối Supabase</span>.</span><button className="link" onClick=${() => setModal({ k: 'setup' })}>Cách kết nối</button></div>` : null}
     <header className="topbar">
       <button className="brand" onClick=${() => setModal({ k: 'about' })} aria-label="Giới thiệu"><span className="logo" dangerouslySetInnerHTML=${{ __html: LOGO }} /><span className="b-t"><b>Tìm thợ Sửa nhà<span className="b-place">Dĩ An</span></b><small>Khách đăng việc, thợ gọi nhận việc</small></span></button>
@@ -2509,6 +2588,7 @@ function App() {
           <button className=${'btn' + (filterCount(f) ? ' on' : '')} onClick=${() => setFOpen(o => !o)}><${Icon} n="filter" /> Bộ lọc${filterCount(f) ? html`<i className="badge">${filterCount(f)}</i>` : null}</button>
           <select className="input w-auto sort-d" value=${sort} onChange=${e => setSort(e.target.value)} aria-label="Sắp xếp">${SORTS.map(([v, l]) => html`<option key=${v} value=${v}>Xếp: ${l.toLowerCase()}</option>`)}</select>
           <button className="icon-btn show-m" onClick=${() => setSheet(false)} aria-label="Xem bản đồ"><${Icon} n="map" /></button>
+          <button className="btn side-hide hide-m" onClick=${hideSide} aria-label="Ẩn bảng danh sách" title="Ẩn bảng danh sách"><${Icon} n="panelClose" /></button>
         </div>
         ${fOpen ? html`<${FilterPanel} f=${f} setF=${setF} onClose=${() => setFOpen(false)} />` : null}
         ${list}
@@ -2533,6 +2613,7 @@ function App() {
           </div>
           <button className="mc base-sw" onClick=${() => setBase(b => b === 'sat' ? 'pastel' : 'sat')} aria-label="Đổi nền bản đồ" title=${'Đổi sang ' + (base === 'sat' ? STYLES.pastel.name : STYLES.sat.name)}><span className="bprev" style=${{ background: (base === 'sat' ? STYLES.pastel : STYLES.sat).prev }}></span><small>${base === 'sat' ? STYLES.pastel.name : STYLES.sat.name}</small></button>
         </div>
+        ${sideHidden ? html`<button className="btn side-show hide-m" onClick=${() => setSideOff(false)} aria-label="Hiện bảng danh sách" title="Hiện bảng danh sách"><${Icon} n="panelOpen" /> Danh sách<b>${filtered.length}</b></button>` : null}
         <div className="m-bottom show-m">
           <button className="btn m-list" onClick=${() => setSheet(true)}><${Icon} n="list" /> Danh sách<b>${filtered.length}</b></button>
           <button className="btn primary m-fab" onClick=${() => setModal({ k: 'form' })} aria-label="Đăng tin"><${Icon} n="plus" /> Đăng tin</button>
